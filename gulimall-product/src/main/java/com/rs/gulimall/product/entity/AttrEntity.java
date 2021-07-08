@@ -1,5 +1,6 @@
 package com.rs.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -56,5 +57,19 @@ public class AttrEntity implements Serializable {
 	 * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
 	 */
 	private Integer showDesc;
+
+	private Integer valueType;
+
+	@TableField(exist = false)
+	private Long attrGroupId;
+
+	@TableField(exist = false)
+	private String groupName;
+
+	@TableField(exist = false)
+	private String catelogName;
+
+	@TableField(exist = false)
+	private Long[] catelogPath;
 
 }

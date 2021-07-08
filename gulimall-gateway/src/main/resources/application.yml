@@ -17,3 +17,30 @@ spring:
           uri: https://www.qq.com
           predicates:
             - Query=url,qq
+        - id: product_route
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: third_part_route
+          uri: lb://gulimall-third-part
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+        - id: admin_route
+          uri: lb://renren-fast
+          ## 负载均衡的方式进行服务查找
+          predicates:
+            - Path=/api/**
+            ## 匹配请求路径中含有 api 的请求
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+            ## 进行路径重写，例如将 /api/test.jsp 重写成 /renren-fast/test.jsp

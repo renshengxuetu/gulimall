@@ -26,6 +26,7 @@ import com.rs.common.utils.R;
  * @email rs@gmail.com
  * @date 2020-09-25 14:42:55
  */
+@RefreshScope
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
